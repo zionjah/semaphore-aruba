@@ -1,0 +1,37 @@
+- name: Save Configurations (IOS)
+
+hosts: X``XXXXXXX
+
+connection: local
+
+ansible_connection = network_cli
+
+gather_facts: no
+
+vars:
+
+creds:
+
+# host: "{{ hosts }}"
+
+username: "{{ 'XXXXXX' }}"
+
+password: "{{ 'XXXXXXX)' }}"
+
+tasks:
+
+- ios_command:
+
+provider: "{{ creds }}"
+
+commands: show run
+
+register: show_run
+
+
+
+- copy:
+
+content: "{{ show_run.stdout[0] }}"
+
+dest: "CFGS/{{ inventory_hostname }}.txt"
