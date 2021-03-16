@@ -1,38 +1,7 @@
-- name: Save Configurations (IOS)
-
-hosts: X``XXXXXXX
-
-connection: local
-
-ansible_connection = network_cli
-
-gather_facts: no
-
-vars:
-+++
-
-creds:
-
-# host: "{{ hosts }}"
-
-username: "{{ 'XXXXXX' }}"
-
-password: "{{ 'XXXXXXX)' }}"
-
-tasks:
-
-- ios_command:
-
-provider: "{{ creds }}"
-
-commands: show run
-
-register: show_run
-
-
-
-- copy:
-
-content: "{{ show_run.stdout[0] }}"
-
-dest: "CFGS/{{ inventory_hostname }}.txt"
+- name: Configurable backup path
+  community.network.aruba_config:
+    backup: yes
+    lines: hostname {{ Inventory-aruba }}
+    backup_options:
+      filename: backup.cfg
+      dir_path: /home/user
