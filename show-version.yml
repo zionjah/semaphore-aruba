@@ -1,4 +1,3 @@
-- name: Run show version on remote devices
   hosts: all
   tasks:
     community.network.aruba_command:
