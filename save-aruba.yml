@@ -1,3 +1,4 @@
+
 - name: Configurable backup path
   community.network.aruba_config:
     backup: yes
